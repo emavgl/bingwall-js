@@ -8,8 +8,8 @@ I put this code into a server so you can get the picture with a single GET reque
 
 **How to use:**  
 
-1. git clone this repo  
-2. npm install to install dependencies
+1. *git clone* to clone this repo  
+2. *npm install* to install dependencies
 
 Download the default picture and place it in download directory  
  `$ node app.js`
