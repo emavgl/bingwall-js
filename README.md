@@ -15,7 +15,7 @@ Download the default picture and place it in download directory
  `$ node app.js`
 
 Download the picture of a specific country (in this example, Canada)  
- `$ node app.js -i=en-CA`
+ `$ node app.js -isocode=en-CA`
 
 Download the picture of Bing Canada and set it as wallpaper (Note. -s option works only on Windows and Gnome)  
- `$ node app.js -i=en-CA  -s`
+ `$ node app.js -isocode=en-CA  -s`
