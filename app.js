@@ -8,7 +8,7 @@ var fs = require('fs'),
 	
 var jsonLink = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=";
 var bingBase = "http://www.bing.com";
-var directory = './download/';
+var directory = path.resolve('./download/');
 
 var setWallpaper = function(path, cb){
 	wallpaper.set(path);
