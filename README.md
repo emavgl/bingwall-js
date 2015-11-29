@@ -3,7 +3,9 @@
 Download the Bing's picture of the day
 --------------
 
-Typically the picture is photo about nature or beautiful place with a resolution of 1920x1080 pixels.
+Typically the picture is photo about nature or beautiful place with a resolution of 1920x1080 pixels.  
+I put this code into a server so you can get the picture with a single GET request in this link [http://bingwall.azurewebsites.net/](http://bingwall.azurewebsites.net/)  
+you can append a string like `?q=en-US` to url for specify a country.  
 
 **How to use:**  
 
