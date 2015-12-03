@@ -8,7 +8,7 @@ var fs = require('fs'),
 	
 var jsonLink = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=";
 var bingBase = "http://www.bing.com";
-var directory = path.resolve('./download/');
+var directory = __dirname + /download/;
 
 var setWallpaper = function(path, cb){
 	wallpaper.set(path);
@@ -49,10 +49,10 @@ downloadJson(url, function(error, complete_url){
 	}
 	
 	downloadImage(complete_url, function(error, imagePath){
-		if (error){	console.error("error"); process.exit(); }
+		if (error){ console.error("error"); process.exit(); }
 		if (program.set){
 			setWallpaper(imagePath, function(error){
-				if (error){	console.error("error"); process.exit(); }
+				if (error){ console.error("error"); process.exit(); }
 			});
 		}
 	});
