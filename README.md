@@ -9,6 +9,22 @@ Bing features a different 1920x1080 wallpaper every day. This script allows down
 
 1. *git clone* to clone this repo  
 2. *npm install* to install dependencies
+ 
+
+
+**Usage:**  
+app [options]
+
+Options:
+
+    -h, --help               output usage information
+    -V, --version            output the version number
+    -s, --set                set as wallpaper (works on windows, gnome and mac)
+    -i, --isocode [isocode]  specify an iso code (es. en-US)
+    -p, --portrait           download the portrait wallpaper
+    -a, --all                download all different images
+
+**Example:**
 
 Download the default picture and place it in download directory  
  `$ node app.js`
