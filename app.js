@@ -6,7 +6,7 @@ var fs = require('fs'),
 	wallpaper = require('./lib/wallpaper-lib/wallpaper.js'),
 	program = require('commander'),
 	request = require('request');
-	
+
 var jsonLink = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=";
 var bingBase = "http://www.bing.com";
 var directory = __dirname + "/download/";
@@ -19,13 +19,13 @@ var setWallpaper = function(path, cb){
 var downloadImage = function(url, cb){
 		var filename = directory + url.split('/').pop();
 		var pictureName = strutil.getPictureNameFromUrl(url);
-		
+
 		if (typeof(downloadedPictures) == 'undefined' || downloadedPictures.indexOf(pictureName) < 0){
 			var f = fs.createWriteStream(filename);
 			request(url).pipe(f);
 			f.on('finish', function() {
 				cb(null, path.resolve(filename));
-			});	
+			});
 		}
 }
 
@@ -47,21 +47,21 @@ var extractUrl = function (json, resolution, cb) {
 var downloadAllPictures = function(){
 	var nationsjson = require('./config/nations.json');
 	var jsonData = nationsjson;
-	
+
 	var newImages = { };
-	
+
 	for (var i = 0; i < jsonData.nations.length; i++) {
     	var nationIsoCode = jsonData.nations[i];
     	var url = jsonLink + nationIsoCode;
-		
+
 		downloadJson(url, function(error, json){
-			if (error){ console.error("error"); process.exit(); }	
+			if (error){ console.error("error"); process.exit(); }
 			extractUrl(json, resolution, function(error, complete_url){
 				if (error){ console.error("error"); process.exit();  }
 				var pictureName = strutil.getPictureNameFromUrl(complete_url);
 				if (typeof(newImages[pictureName]) == 'undefined'){
 					newImages[pictureName] = complete_url;
-					
+
 					downloadImage(complete_url, function(error, imagePath){
 						if (error){ console.error("error"); process.exit(); }
 					});
@@ -73,19 +73,20 @@ var downloadAllPictures = function(){
 
 var downloadSinglePicture = function (url, resolution, setAsWallpaper){
 		downloadJson(url, function(error, json){
-		if (error){ console.error("error"); process.exit(); }	
+		if (error){ console.error("error"); process.exit(); }
 		extractUrl(json, resolution, function(error, completeUrl){
 			if (error){ console.error("error"); process.exit();  }
 			downloadImage(completeUrl, function(error, imagePath){
 				if (error){ console.error("error"); process.exit(); }
 				if (setAsWallpaper){
 					setWallpaper(imagePath, function(error){
-						if (error){ console.error("error"); process.exit(); }
+						if (error){ console.error("error"); process.exit();}
+						console.log(json.images[0].copyright);
 					});
 				}
 			});
 		})
-	});	
+	});
 }
 
 var getDownloadedPictures = function(dir){
@@ -106,7 +107,7 @@ program
   .option('-p, --portrait', 'download the portrait wallpaper')
   .option('-a, --all', 'download all different images')
   .parse(process.argv);
-  
+
 var url = jsonLink + program.isocode;
 
 var resolution = "1920x1080";

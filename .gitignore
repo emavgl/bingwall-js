@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io/api/node
 
+# Do not take care of images
+download/*.jpg
+
 ### Node ###
 # Logs
 logs
